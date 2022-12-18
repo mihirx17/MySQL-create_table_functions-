@@ -1,0 +1,77 @@
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| student            |
+| student_info       |
+| sys                |
++--------------------+
+6 rows in set (0.00 sec)
+
+mysql> use student_info;
+Database changed
+mysql> show tables;
++------------------------+
+| Tables_in_student_info |
++------------------------+
+| information_student    |
++------------------------+
+1 row in set (0.00 sec)
+
+mysql> desc information_student;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| name     | varchar(23) | NO   |     | NULL    |       |
+| age      | int         | YES  |     | NULL    |       |
+| address  | text        | YES  |     | NULL    |       |
+| email_id | varchar(30) | YES  |     | NULL    |       |
+| password | varchar(12) | NO   |     | NULL    |       |
+| phn_no   | int         | NO   |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> slect *from information_student;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'slect *from information_student' at line 1
+mysql> select *from information_student;
++-------+------+---------+----------+----------+--------+
+| name  | age  | address | email_id | password | phn_no |
++-------+------+---------+----------+----------+--------+
+| mihir |   12 | mihir   | sss      | 123      |      0 |
++-------+------+---------+----------+----------+--------+
+1 row in set (0.00 sec)
+
+mysql> alter table information_student
+    -> add column stream varchar(12);
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table information_student
+    -> information_student to student_info;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'information_student to student_info' at line 2
+mysql> alter table information_student
+    -> rename student_info;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> show tables;
++------------------------+
+| Tables_in_student_info |
++------------------------+
+| student_info           |
++------------------------+
+1 row in set (0.00 sec)
+
+mysql> alter table student_info
+    -> drop column stream;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select *from student_info;
++-------+------+---------+----------+----------+--------+
+| name  | age  | address | email_id | password | phn_no |
++-------+------+---------+----------+----------+--------+
+| mihir |   12 | mihir   | sss      | 123      |      0 |
++-------+------+---------+----------+----------+--------+
+1 row in set (0.00 sec)
+
+
